@@ -18,7 +18,7 @@ MyBullet::MyBullet() : QGraphicsPixmapItem(), _need_remove(false)
 
     QTimer * timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
-    timer->start(50);
+    timer->start(5);
 }
 
 MyBullet::~MyBullet()
@@ -38,7 +38,7 @@ void MyBullet::move() {
     }
 
     QRectF rect = boundingRect();
-    moveBy(0, -10);
+    moveBy(0, -1);
     if (y() + rect.height() <= 0) {
         scene()->removeItem(this);
         delete this;

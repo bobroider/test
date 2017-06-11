@@ -6,8 +6,10 @@
 #include <QGraphicsItem>
 #include <QKeyEvent>
 #include <QObject>
-
+#include <QTimer>
 #include <QMediaPlayer>
+
+
 
 class MyRect : public QObject, public QGraphicsPixmapItem
 {
@@ -15,14 +17,26 @@ class MyRect : public QObject, public QGraphicsPixmapItem
 
 public:
     MyRect(QGraphicsItem * parent = Q_NULLPTR);
+
 protected:
     virtual void keyPressEvent(QKeyEvent * event);
+    virtual void keyReleaseEvent(QKeyEvent *event);
+
+
+    enum Direction {
+        Direction_Left,
+        Direction_Right
+    };
+
+    Direction direction;
 
 public slots:
     void spawn();
+    void move();
 
 private:
     QMediaPlayer * _piu_sound;
+    QTimer * _timer;
 };
 
 
