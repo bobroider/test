@@ -19,20 +19,7 @@ public:
 
     enum { Type = UserType + 2 };
     int type() const { return Type; }
-    struct CheckCollisionEnemy {
-        MyBullet * _delegate;
 
-        CheckCollisionEnemy(MyBullet * delegate): _delegate(delegate) {}
-
-        void operator()(QGraphicsItem * item) {
-            if (item->type() == MyEnemy::Type) {
-                item->scene()->removeItem(item);
-                delete item;
-                _delegate->_need_remove = true;
-            }
-
-        }
-    };
 
 public slots:
     void move();

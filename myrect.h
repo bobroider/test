@@ -25,10 +25,15 @@ protected:
 
     enum Direction {
         Direction_Left,
-        Direction_Right
+        Direction_Right,
+        Direction_Unknown
+
     };
 
     Direction direction;
+
+    bool isPressedLeft;
+    bool isPressedRight;
 
 public slots:
     void spawn();

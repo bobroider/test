@@ -33,11 +33,18 @@ MyBullet::~MyBullet()
 }
 
 void MyBullet::move() {
-    QList<QGraphicsItem *> items = collidingItems();
+    auto items = collidingItems();
+    bool need_remove = false;
+    std::for_each(items.begin(), items.end(), [&need_remove, this](QGraphicsItem *entity) {
+        if(entity->type() == MyEnemy::Type) {
+            game->score->increase();
+            scene()->removeItem(entity);
+            delete entity;
+            need_remove = true;
+        }
+    } );
 
-    std::for_each(items.begin(), items.end(), CheckCollisionEnemy(this));
-    if(_need_remove) {
-        game->score->increase();
+    if(need_remove) {
         scene()->removeItem(this);
         delete this;
         return;
