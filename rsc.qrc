@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/music">
+        <file>bgsound.mp3</file>
+        <file>boom.wav</file>
+        <file>piu.wav</file>
+    </qresource>
+    <qresource prefix="/image">
+        <file>Missile.png</file>
+        <file>player_ed.png</file>
+        <file>fly.png</file>
+    </qresource>
+</RCC>
