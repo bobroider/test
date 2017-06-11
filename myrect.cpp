@@ -91,14 +91,14 @@ void MyRect::move()
         if(pos().x() > 0)
             moveBy(-1, 0);
         else {
-            _timer->stop();
+            //_timer->stop();
             direction = Direction_Unknown;
         }
     } else if(direction == Direction_Right){
         if (pos().x() + boundingRect().width() < scene()->sceneRect().right())
             moveBy(1, 0);
         else {
-            _timer->stop();
+            //_timer->stop();
             direction = Direction_Unknown;
         }
     }
