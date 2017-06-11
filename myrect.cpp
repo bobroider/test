@@ -1,7 +1,7 @@
 
 #include <QDebug>
 #include <QGraphicsScene>
-
+#include <QGraphicsView>
 #include "myrect.h"
 #include "mybullet.h"
 #include "myenemy.h"
@@ -63,12 +63,14 @@ void MyRect::keyReleaseEvent(QKeyEvent *event)
 
 void MyRect::spawn()
 {
+    qDebug() << scene()->views().first()->size();
     MyEnemy * enemy = new MyEnemy;
     scene()->addItem(enemy);
 }
 
 void MyRect::move()
 {
+    if(!hasFocus() && _timer->isActive()) { _timer->stop(); return; }
     if(direction == Direction_Left) {
         if(pos().x() > 0)
             moveBy(-1, 0);

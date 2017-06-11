@@ -9,6 +9,7 @@
 Game::Game()
 {
     scene = new QGraphicsScene;
+    scene->setSceneRect(0, 0, 800, 600);
 
     player = new MyRect;
     player->setFlag(QGraphicsItem::ItemIsFocusable);
@@ -16,13 +17,15 @@ Game::Game()
 
     scene->addItem(player);
 
+
     view = new QGraphicsView(scene);
 
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    view->adjustSize();
+    view->setFixedSize(view->size());
 
-    view->setFixedSize(800, 600);
-    scene->setSceneRect(0, 0, 800, 600);
+
     player->setPos(scene->width() / 2, scene->height() - player->boundingRect().height());
 
     score = new MyScore;
@@ -39,12 +42,6 @@ Game::Game()
     QTimer * timer = new QTimer;
     QObject::connect(timer, SIGNAL(timeout()), player, SLOT(spawn()));
     timer->start(2000);
-
-    /*
-    QLoggingCategory::setFilterRules(QStringLiteral(""));
-    QString data_info = QLibraryInfo::location(QLibraryInfo::DataPath);
-    std::cout << data_info.toStdString() << std::endl;
-*/
 
 }
 
