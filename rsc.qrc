@@ -6,7 +6,6 @@
     </qresource>
     <qresource prefix="/image">
         <file>Missile.png</file>
-        <file>player_ed.png</file>
         <file>fly.png</file>
     </qresource>
 </RCC>
