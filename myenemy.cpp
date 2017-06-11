@@ -16,7 +16,11 @@ extern Game * game;
 MyEnemy::MyEnemy()
 {
     setRect(0, 0, 100, 100);
-    setPos(rand() % 700, -100);
+
+    setPos(rand() % static_cast<int>(game->_w - boundingRect().width() ),
+           - boundingRect().height()
+           );
+    setZValue(Game::PriorityDeepEnemy);
     QTimer * timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
     timer->start(10);

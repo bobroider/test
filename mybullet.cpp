@@ -19,6 +19,12 @@ MyBullet::MyBullet() : QGraphicsPixmapItem(), _need_remove(false)
     QTimer * timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
     timer->start(5);
+
+    MyRect * pl = game->player;
+    setPos( pl->pos() + pl->boundingRect().center() - boundingRect().center() );
+    setZValue(Game::PriorityDeepBullet);
+    qDebug() << pl->pos() << pl->boundingRect().center() << boundingRect().center() << pl->zValue();
+
 }
 
 MyBullet::~MyBullet()

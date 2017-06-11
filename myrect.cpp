@@ -5,6 +5,7 @@
 #include "myrect.h"
 #include "mybullet.h"
 #include "myenemy.h"
+#include "game.h"
 
 MyRect::MyRect(QGraphicsItem *parent): QGraphicsPixmapItem(parent)
 {
@@ -16,6 +17,7 @@ MyRect::MyRect(QGraphicsItem *parent): QGraphicsPixmapItem(parent)
     connect( _timer, SIGNAL(timeout()), this, SLOT(move()));
 
     setPixmap(QPixmap(":/image/fly.png"));
+    setZValue(Game::PriorityDeepPlayer);
 }
 
 void MyRect::keyPressEvent(QKeyEvent *event)
@@ -33,9 +35,7 @@ void MyRect::keyPressEvent(QKeyEvent *event)
     }
     else if (event->key() == Qt::Key_Space) {
         event->accept();
-        MyBullet * bullet = new MyBullet;
-        bullet->setPos(x(), y());
-        scene()->addItem(bullet);
+        scene()->addItem(new MyBullet);
 
         if (_piu_sound->state() == QMediaPlayer::PlayingState) {
             _piu_sound->setPosition(0);
@@ -63,9 +63,7 @@ void MyRect::keyReleaseEvent(QKeyEvent *event)
 
 void MyRect::spawn()
 {
-    qDebug() << scene()->views().first()->size();
-    MyEnemy * enemy = new MyEnemy;
-    scene()->addItem(enemy);
+    scene()->addItem(new MyEnemy);
 }
 
 void MyRect::move()

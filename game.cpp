@@ -9,7 +9,7 @@
 Game::Game()
 {
     scene = new QGraphicsScene;
-    scene->setSceneRect(0, 0, 800, 600);
+    scene->setSceneRect(0, 0, _w, _h);
 
     player = new MyRect;
     player->setFlag(QGraphicsItem::ItemIsFocusable);
@@ -26,7 +26,9 @@ Game::Game()
     view->setFixedSize(view->size());
 
 
-    player->setPos(scene->width() / 2, scene->height() - player->boundingRect().height());
+    player->setPos(scene->width() / 2 - player->boundingRect().center().x(),
+                   scene->height() - player->boundingRect().height()
+                   );
 
     score = new MyScore;
     scene->addItem(score);
